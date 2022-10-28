@@ -11,8 +11,17 @@ pipeline {
       {
        steps
         {
-          sh 'docker login -u venkat5658 -p venkat5658@'
-          sh 'docker push  venkat5658/myproject:latest'
+          sh 'sudo docker login -u venkat5658 -p venkat5658@'
+          sh 'sudo docker push  venkat5658/myproject:latest'
+        }
+      } 
+        stage('kube deploy')
+      {
+       steps
+        {
+          sh 'sudo kubectl apply -f edu-dep.yaml'
+          sh 'sudo kubectl apply -f dep-svc.yaml'
+           sh 'sudo kubectl rollout restart deployment/httpd-deployment'
         }
       } 
     }
