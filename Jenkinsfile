@@ -5,6 +5,7 @@ pipeline {
         stage('build docker file') {
             steps {
                 sh 'sudo docker build . -t venkat5658/myproject:latest'
+                 echo 'GIT_COMMIT %GIT_COMMIT%'
             }
         }
       stage('docker hub push')
