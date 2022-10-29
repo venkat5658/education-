@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: httpd-deployment
+    name: demo-eduction
     labels:
-      app: httpd2
+      app: demo-eduction
 spec:
  replicas: 3
  selector:
      matchLabels:
-      app: httpd2
+      app: demo-eduction
  template:
      metadata:
         labels:
-            app: httpd2
+            app: demo-eduction
      spec:
        containers:
-         - name: httpd2
+         - name: demo-eduction
            image: venkat5658/myproject:latest
            imagePullPolicy: "Always"
            ports:
