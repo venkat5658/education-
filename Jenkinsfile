@@ -23,6 +23,7 @@ pipeline {
           sh 'sudo kubectl apply -f edu-dep.yaml'
           sh 'sudo kubectl apply -f dep-svc.yaml'
           sh 'sudo kubectl apply -f dep-ingress.yaml'
+          sh 'sudo kubectl rollout restart deployment/httpd-deployment'
            
         }
       } 
