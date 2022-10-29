@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: demo-eduction
+    namespace: eduction
     labels:
       app: demo-eduction
 spec:
