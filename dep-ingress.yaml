@@ -15,4 +15,4 @@ spec:
               service:
                 name: demo-eduction
                 port:
-                  number: 800
+                  number: 80
