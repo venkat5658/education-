@@ -1,21 +1,24 @@
 pipeline {
     agent any
 
-    stages {
-        stage('build docker file') {
-            steps {
-                sh 'sudo docker build . -t venkat5658/myproject:latest'
-               
+     stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("httpd")
+                }
             }
         }
-      stage('docker hub push')
-      {
-       steps
-        {
-          sh 'sudo docker login -u venkat5658 -p venkat5658@'
-          sh 'sudo docker push  venkat5658/myproject:latest'
-        }
-      } 
+     
+ stage('Push') {
+            steps {
+                script{
+                        docker.withRegistry('010762572680.dkr.ecr.ap-south-1.amazonaws.com/test:demo', 'ecr:ap-south-1:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            } 
+ }
         stage('kube deploy')
       {
        steps
@@ -27,4 +30,4 @@ pipeline {
         }
       } 
     }
-}
+
